@@ -1,0 +1,24 @@
+{
+  "name": "biz2credit-challenge",
+  "version": "1.0.0",
+  "description": "Code Challenge for Shubham Verma",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "maveric.shubham",
+  "license": "ISC",
+  "keywords": [
+    "maveric.shubham",
+    "code-challenge",
+    "Biz2Credit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mavericshubham/biz2credit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mavericshubham/biz2credit/issues"
+  },
+  "homepage": "https://github.com/mavericshubham/biz2credit#readme"
+}
