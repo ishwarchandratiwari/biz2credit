@@ -1,4 +1,4 @@
-#Biz2Credit Code Challenge
+# Biz2Credit Code Challenge
 
 ## Usage
 
@@ -23,11 +23,11 @@ b2c.getEligibleCustomers().catch((err) => {
 
 ### Providing Custom Configrations/Options
 
+#### Providing Customer Eligibility Distance as 50 Miles
 ```javascript
 let Biz2Credit = require('biz2credit-challenge');
 let b2c = new Biz2Credit();
 
-//To set the customer eligiblity distance as 50 Miles
 let options = {
 	distanceUnit : 'M',
 	distance : 50
@@ -37,8 +37,13 @@ b2c.getEligibleCustomers(otions).catch((err) => {
 }).then((eligibleCustomers) => {
 	console.log(eligibleCustomers);
 });
+```
 
-//To provide custom file path
+#### Providing Custom File Path
+```javascript
+let Biz2Credit = require('biz2credit-challenge');
+let b2c = new Biz2Credit();
+
 let options = {
 	filePath : '<complete path of the file>'
 };
@@ -47,6 +52,13 @@ b2c.getEligibleCustomers(otions).catch((err) => {
 }).then((eligibleCustomers) => {
 	console.log(eligibleCustomers);
 });
+```
+
+#### Providing Custom Source Address, Like your Noida office instead of Dublin
+
+```javascript
+let Biz2Credit = require('biz2credit-challenge');
+let b2c = new Biz2Credit();
 
 //To provide custom source address, like your noida office instead of dublin
 let options = {
