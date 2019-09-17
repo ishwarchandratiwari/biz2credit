@@ -12,13 +12,13 @@ Assignment – Coding Challenge:
 ### Require
 
 ```javascript
-let Biz2Credit = require('biz2credit-challenge');
+let Biz2Credit = require('biz2credit-code-challenge');
 ```
 
 ### Calling the API with defaults
 
 ```javascript
-let Biz2Credit = require('biz2credit-challenge');
+let Biz2Credit = require('biz2credit-code-challenge');
 let b2c = new Biz2Credit();
 
 b2c.getEligibleCustomers().catch((err) => {
@@ -32,14 +32,14 @@ b2c.getEligibleCustomers().catch((err) => {
 
 #### Providing Customer Eligibility Distance as 50 Miles
 ```javascript
-let Biz2Credit = require('biz2credit-challenge');
+let Biz2Credit = require('biz2credit-code-challenge');
 let b2c = new Biz2Credit();
 
 let options = {
 	distanceUnit: 'M',
 	distance 	: 50
 };
-b2c.getEligibleCustomers(otions).catch((err) => {
+b2c.getEligibleCustomers(options).catch((err) => {
 	console.log(`Error received: `, err.message);
 }).then((eligibleCustomers) => {
 	console.log(eligibleCustomers);
@@ -48,13 +48,13 @@ b2c.getEligibleCustomers(otions).catch((err) => {
 
 #### Providing Custom File Path
 ```javascript
-let Biz2Credit = require('biz2credit-challenge');
+let Biz2Credit = require('biz2credit-code-challenge');
 let b2c = new Biz2Credit();
 
 let options = {
 	filePath : '<complete path of the file>'
 };
-b2c.getEligibleCustomers(otions).catch((err) => {
+b2c.getEligibleCustomers(options).catch((err) => {
 	console.log(`Error received: `, err.message);
 }).then((eligibleCustomers) => {
 	console.log(eligibleCustomers);
@@ -64,7 +64,7 @@ b2c.getEligibleCustomers(otions).catch((err) => {
 #### Providing Custom Source Address, Like your Noida office instead of Dublin
 
 ```javascript
-let Biz2Credit = require('biz2credit-challenge');
+let Biz2Credit = require('biz2credit-code-challenge');
 let b2c = new Biz2Credit();
 
 let options = {
@@ -73,7 +73,7 @@ let options = {
 		longitude	: 77.318184
 	}
 };
-b2c.getEligibleCustomers(otions).catch((err) => {
+b2c.getEligibleCustomers(options).catch((err) => {
 	console.log(`Error received: `, err.message);
 }).then((eligibleCustomers) => {
 	console.log(eligibleCustomers);

@@ -40,11 +40,4 @@ const appConfigs = require('./configs/app');
 const BaseAppClass = require('./baseApp');
 BaseAppClass.configs = appConfigs;
 
-global.B2C = new BaseAppClass();
-B2C.getEligibleCustomers({distance: 200}).catch((err) => {
-	console.log(`Error received: `, err.message);
-}).then((eligibleCustomers) => {
-	console.log(eligibleCustomers);
-});
-
 module.exports = BaseAppClass;

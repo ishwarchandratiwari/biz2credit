@@ -48,10 +48,10 @@ class BaseApp {
 	 * > The function would throw a specific error, only in case, an unhandled exception is received in fetching the eligible list.
 	 */
 	async getEligibleCustomers(configs = {}) {
-		if(!(configs instanceof Object)) {
+		if (!(configs instanceof Object)) {
 			this.throwError('Invalid configurations provided');
 		}
-		this.configs = {...this.configs, ...configs};
+		this.configs = { ...this.configs, ...configs };
 		return await this._getEligibleCustomers().catch((err) => {
 			this.throwError(`Error in getting eligibile customers list`, err);
 		});
@@ -89,14 +89,28 @@ class BaseApp {
 	 * 		there was an error in processing the customer data line and config for "showErrorForFailedCustomerProcessing" was set to true.
 	 */
 	async _setupReaderInterface() {
+		await this.checkFileExists(this.configs.filePath).catch((err) => {
+			this.throwError(`The provided file is not present.`);
+		});
 		this.readInterface = readline.createInterface({
 			input: fs.createReadStream(this.configs.filePath)
 		});
 		this.readInterface.on('line', this._customerDataReadFromList.bind(this));
 		await once(this.readInterface, 'close');
-		if(!!this.readInterfaceErrorLine) {
+		if (!!this.readInterfaceErrorLine) {
 			this.throwError(`Error in reading customer data at line ${this.readInterfaceErrorLine}`);
 		}
+	}
+
+	checkFileExists(filePath) {
+		return new Promise((resolve, reject) => {
+			fs.access(filePath, fs.F_OK, (err) => {
+				if (err) {
+					return reject(err);
+				}
+				resolve(true);
+			})
+		});
 	}
 
 	/**
@@ -111,8 +125,8 @@ class BaseApp {
 		let customerData = false;
 		try {
 			customerData = JSON.parse(line);
-		} catch(err) {
-			if(this.configs.showErrorForFailedCustomerProcessing) {
+		} catch (err) {
+			if (this.configs.showErrorForFailedCustomerProcessing) {
 				this.readInterface.close();
 				this.readInterfaceErrorLine = this.lineNumberCounter++;
 			}
@@ -134,11 +148,11 @@ class BaseApp {
 	_processCustomerData(customerData) {
 		try {
 			const isEligible = this._checkCustomerEligibility(customerData);
-			if(!!isEligible) {
-				this.eligCustomersList.push({user_id: customerData.user_id, name: customerData.name});
+			if (!!isEligible) {
+				this.eligCustomersList.push({ user_id: customerData.user_id, name: customerData.name });
 			}
-		} catch(err) {
-			if(this.configs.showErrorForFailedCustomerProcessing) {
+		} catch (err) {
+			if (this.configs.showErrorForFailedCustomerProcessing) {
 				this.throwError(`Error in processing customer ${customerData.name}`, err);
 			}
 		}
@@ -155,7 +169,7 @@ class BaseApp {
 	_checkCustomerEligibility(customerData) {
 		try {
 			const customerDistance = this._calculateCustomerDistanceFromSource(customerData);
-			if(Number(customerDistance) <= this.configs.distance) {
+			if (Number(customerDistance) <= this.configs.distance) {
 				return true;
 			}
 		} catch (err) {
@@ -199,10 +213,10 @@ class BaseApp {
 	 *	If there was no previous error then throw the currently passed error message.
 	 */
 	throwError(errMsg, parentErr) {
-		if(parentErr) {
-			if(parentErr instanceof AppError) {
+		if (parentErr) {
+			if (parentErr instanceof AppError) {
 				throw parentErr;
-			} else if(global.configs.showUnhandledExceptions) {
+			} else if (global.configs.showUnhandledExceptions) {
 				throw parentErr;
 			}
 		}
