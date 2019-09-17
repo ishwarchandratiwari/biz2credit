@@ -7,8 +7,9 @@
  * customerSortingField : The field on basis of which the customers list is to be filtered.
  * showErrorForFailedCustomerProcessing : It determines whether the code would throw error if there is processing error for any customer
  */
+const path = require('path');
 const APP_CONFIGS = {
-	filePath : global.projectFolderPath + '/data/customers.txt',
+	filePath : path.resolve(__dirname + '/../data/customers.txt'),
 	sourceCoordinates : {
 		latitude  : 53.339428,
 		longitude : -6.257664

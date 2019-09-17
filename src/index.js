@@ -26,17 +26,13 @@
  * c. "Configurations" (both global and app level) are scalable and can be easily extended in the future if need be.
  */
 
-// required to set up the projectFolderPath in "global" object, which would be used in the rest of the application hereafter
-var path = require('path');
-global.projectFolderPath = path.resolve();
-
 // required to set up the global level configurations
-const globalConfigs = require('./configs/global');
+const globalConfigs = require('../configs/global');
 global.configs = globalConfigs;
 
 // required to set up the application level configurations, which are being set on the Constructor/Class definition of BaseAppClass and would
 // be extracted from the constructor itself.
-const appConfigs = require('./configs/app');
+const appConfigs = require('../configs/app');
 const BaseAppClass = require('./baseApp');
 BaseAppClass.configs = appConfigs;
 

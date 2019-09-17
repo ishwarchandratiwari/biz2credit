@@ -90,7 +90,7 @@ class BaseApp {
 	 */
 	async _setupReaderInterface() {
 		await this.checkFileExists(this.configs.filePath).catch((err) => {
-			this.throwError(`The provided file is not present.`);
+			this.throwError(`The provided file is not present at ${this.configs.filePath}.`);
 		});
 		this.readInterface = readline.createInterface({
 			input: fs.createReadStream(this.configs.filePath)
