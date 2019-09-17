@@ -29,8 +29,8 @@ let Biz2Credit = require('biz2credit-challenge');
 let b2c = new Biz2Credit();
 
 let options = {
-	distanceUnit : 'M',
-	distance : 50
+	distanceUnit: 'M',
+	distance 	: 50
 };
 b2c.getEligibleCustomers(otions).catch((err) => {
 	console.log(`Error received: `, err.message);
@@ -60,7 +60,6 @@ b2c.getEligibleCustomers(otions).catch((err) => {
 let Biz2Credit = require('biz2credit-challenge');
 let b2c = new Biz2Credit();
 
-//To provide custom source address, like your noida office instead of dublin
 let options = {
 	sourceCoordinates: {
 		latitude	: 28.583176,
